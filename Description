@@ -1,0 +1,14 @@
+## 📝 Brief description
+
+This code solves the **"Decode Ways II"** problem: given a `string` of digits (where `*` represents any digit from 1 to 9), it counts **how many ways** it can be decoded into letters (A=1 through Z=26), returning the result **modulo 1,000,000,007**.
+
+**How it works:**
+- It uses **dynamic programming** with O(1) space, storing only the last two states (`prev2` and `prev1`).
+- For each position `i`, it adds two contributions:
+  - **1 digit:** ways to decode up to `i-1` × ways for the character `s[i]` alone
+  - **2 digits:** ways to decode up to `i-2` × ways for the pair `(s[i-1], s[i])` together
+- Two helper functions handle the special cases:
+  - `CountSingle(c)` → how many letters a single character can form (9 if it is `*`, 0 if it is `0`, otherwise 1)
+  - `CountPair(a, b)` → how many letters a pair can form (handles `*`, `0`, and the valid range from 10 to 26)
+
+**Complexity:** time O(n), space O(1).
